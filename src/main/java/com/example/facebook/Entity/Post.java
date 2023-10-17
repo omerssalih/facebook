@@ -2,12 +2,12 @@ package com.example.facebook.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,18 +16,21 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "posta")
+@Table
 public class Post {
 
-    @Id
+    /*@Id
     @SequenceGenerator(
             name = "post_sequence",
             sequenceName = "post_sequence",
             allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_sequence")*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
-    private Long userId;
-    private String comment;
+    @NotNull
+    private String userName;
+    private String post;
     private int likes;
     @CreationTimestamp
     private LocalDate dateTime;

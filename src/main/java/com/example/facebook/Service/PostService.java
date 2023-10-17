@@ -20,17 +20,16 @@ public class PostService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public ArrayList<Post> submitPost(SubmitPostDto submitPostDto) {
-        Optional<User> userOptional = userRepository.findById(submitPostDto.getUserId());
+
+    public void submitPost(SubmitPostDto submitPostDto) {
+        Optional<User> userOptional = userRepository.findByUserName(
+                submitPostDto.getUserName());
         if (userOptional.isPresent()) {
             Post post = modelMapper.map(submitPostDto, Post.class);
             postRepository.save(post);
+        } else {
+            throw new IllegalStateException("Böyle bir kullanıcı yoktur");
         }
-        else {
-            throw new IllegalStateException("böyle bir kullanıcı yoktur");
-        }
-        ArrayList<Post> result = getAllPostFromDB();
-        return result;
     }
 
     public ArrayList<Post> getAllPostFromDB(){

@@ -1,5 +1,7 @@
 package com.example.facebook.Controller;
 
+import com.example.facebook.Dto.CreateUserDto;
+import com.example.facebook.Dto.SubmitPostDto;
 import com.example.facebook.Entity.Post;
 import com.example.facebook.Entity.User;
 import com.example.facebook.Service.UserService;
@@ -23,12 +25,9 @@ public class UserController {
         return userService.getUsers();
     }
 
-
     @PostMapping
-    public ArrayList<User> addUser(@RequestBody User body){
-        ArrayList<User> result = userService.addUser(body);
-        return result;
-
+    public void addUser(@RequestBody CreateUserDto user) {
+        userService.addUser(user);
     }
 
     @DeleteMapping(path = "{userId}")

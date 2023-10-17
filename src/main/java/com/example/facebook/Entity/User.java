@@ -3,6 +3,7 @@ package com.example.facebook.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long userId;
     private String userName;
+    @Email
     private String userEmail;
-    /*private LocalDate dob;*/
     private String userPassword;
 
     @JsonManagedReference
