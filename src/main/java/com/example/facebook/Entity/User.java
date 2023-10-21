@@ -27,12 +27,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long userId;
     private String userName;
-    @Email
     private String userEmail;
     private String userPassword;
 
     @JsonManagedReference
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JsonIgnore
     @JoinTable(
             name = "user_post",

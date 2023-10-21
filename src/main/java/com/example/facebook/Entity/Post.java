@@ -1,6 +1,7 @@
 package com.example.facebook.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,7 @@ public class Post {
 
 
     @JsonBackReference
-    @ManyToMany(mappedBy = "assignedPosts")
+    @ManyToMany(mappedBy = "assignedPosts", cascade = CascadeType.ALL)
+    //private User user;
     private Set<User> users = new HashSet<>();
 }
