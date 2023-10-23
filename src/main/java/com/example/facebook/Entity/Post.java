@@ -38,7 +38,8 @@ public class Post {
 
 
     @JsonBackReference
-    @ManyToMany(mappedBy = "assignedPosts", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "assignedPosts")
     //private User user;
     private Set<User> users = new HashSet<>();
+
 }

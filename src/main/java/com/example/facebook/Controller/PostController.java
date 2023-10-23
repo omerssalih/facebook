@@ -30,9 +30,9 @@ public class PostController {
         return result;
     }
 
-    @DeleteMapping("{postId}/deletePost/{userName}")
-    public ArrayList<Post> deletePost(@PathVariable("userName") String userName, @PathVariable("postId") Long postId) {
-        ArrayList<Post> result = postService.deletePostFromDB(postId, userName);
+    @DeleteMapping("{postId}/deletePost/{userId}")
+    public ArrayList<Post> deletePost(@PathVariable("userId") Long userId, @PathVariable("postId") Long postId) {
+        ArrayList<Post> result = postService.deletePostFromDB(postId, userId);
         return result;
     }
 

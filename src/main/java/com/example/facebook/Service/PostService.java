@@ -43,11 +43,12 @@ public class PostService {
         return result;
     }
 
-    public ArrayList<Post> deletePostFromDB(Long postId, String userName){
+    public ArrayList<Post> deletePostFromDB(Long postId, Long userId){
         Post post = postRepository.findById(postId).orElseThrow(() ->
                 new PostNotFoundException(
                         "post not found with this id: " + postId));
-        User user = userService.getUserByName(userName);
+        Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.get();
         user.getAssignedPosts().remove(post);
         postRepository.deleteById(postId);
         ArrayList<Post> result = getAllPostFromDB();
